@@ -1,6 +1,18 @@
-import { Link, Outlet } from "react-router"
+import { Link, Outlet, useNavigate } from "react-router"
+import { useLogout, useMe } from "@/features/auth/hooks"
+import { Button } from "@/components/ui/button"
 
 export default function Layout() {
+  const { data: me } = useMe()
+  const logout = useLogout()
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    logout.mutate(undefined, {
+      onSuccess: () => navigate("/login"),
+    })
+  }
+
   return (
     <div className="min-h-svh bg-background text-foreground">
       <header className="border-b border-border">
@@ -8,10 +20,21 @@ export default function Layout() {
           <Link to="/" className="text-lg font-semibold">
             Guidhub
           </Link>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Клиент</span>
-            <span>/</span>
-            <span>Гид</span>
+          <div className="flex items-center gap-3 text-sm">
+            {me ? (
+              <>
+                <span className="text-muted-foreground">{me.firstName}</span>
+                <span className="text-muted-foreground">/</span>
+                <span className="text-muted-foreground">Гид</span>
+                <Button variant="ghost" size="sm" onClick={handleLogout} disabled={logout.isPending}>
+                  Выйти
+                </Button>
+              </>
+            ) : (
+              <Link to="/login" className="text-sm underline-offset-4 hover:underline">
+                Войти
+              </Link>
+            )}
           </div>
         </div>
       </header>
