@@ -11,6 +11,7 @@ import {
 import type {
   AddChildRequest,
   BecomeGuideDto,
+  ChildDto,
   UpdateMyProfileCommand,
 } from "@/types/user"
 
@@ -39,7 +40,7 @@ export function useTogglePrivacy() {
 }
 
 export function useChildren() {
-  return useQuery({
+  return useQuery<ChildDto[]>({
     queryKey: ["children"],
     queryFn: getChildren,
   })
