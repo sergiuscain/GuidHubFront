@@ -12,6 +12,7 @@ import GuideEventManagePage from "@/pages/GuideEventManagePage"
 import GeographyRequestPage from "@/pages/GeographyRequestPage"
 import LoginPage from "@/pages/LoginPage"
 import NotFoundPage from "@/pages/NotFoundPage"
+import RequireGuide from "@/components/RequireGuide"
 
 export const router = createBrowserRouter([
   {
@@ -24,9 +25,14 @@ export const router = createBrowserRouter([
       { path: "bookings", element: <BookingsPage /> },
       { path: "profile", element: <ProfilePage /> },
       { path: "profile/become-guide", element: <BecomeGuidePage /> },
-      { path: "guide/events", element: <GuideEventsPage /> },
-      { path: "guide/events/new", element: <GuideEventNewPage /> },
-      { path: "guide/events/:id", element: <GuideEventManagePage /> },
+      {
+        element: <RequireGuide />,
+        children: [
+          { path: "guide/events", element: <GuideEventsPage /> },
+          { path: "guide/events/new", element: <GuideEventNewPage /> },
+          { path: "guide/events/:id", element: <GuideEventManagePage /> },
+        ],
+      },
       { path: "geography/request", element: <GeographyRequestPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "*", element: <NotFoundPage /> },

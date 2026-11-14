@@ -1,8 +1,18 @@
 import { Link, Outlet, useNavigate } from "react-router"
 import { useLogout, useMe } from "@/features/auth/hooks"
 import { Button } from "@/components/ui/button"
+import { RoleModeProvider } from "@/features/auth/RoleModeContext"
+import ModeSwitcher from "./ModeSwitcher"
 
 export default function Layout() {
+  return (
+    <RoleModeProvider>
+      <LayoutInner />
+    </RoleModeProvider>
+  )
+}
+
+function LayoutInner() {
   const { data: me } = useMe()
   const logout = useLogout()
   const navigate = useNavigate()
@@ -20,14 +30,18 @@ export default function Layout() {
           <Link to="/" className="text-lg font-semibold">
             Guidhub
           </Link>
-          <Link to="/profile" className="text-sm underline-offset-4 hover:underline">Профиль</Link>
-<Link to="/profile/become-guide" className="text-sm underline-offset-4 hover:underline">Стать гидом</Link>
           <div className="flex items-center gap-3 text-sm">
             {me ? (
               <>
-                <span className="text-muted-foreground">{me.firstName}</span>
-                <span className="text-muted-foreground">/</span>
-                <span className="text-muted-foreground">Гид</span>
+                <ModeSwitcher />
+                <Link to="/profile" className="text-sm underline-offset-4 hover:underline">
+                  {me.firstName}
+                </Link>
+                {!me.roles.includes("Guide") && (
+  <Link to="/profile/become-guide" className="text-sm underline-offset-4 hover:underline">
+    Стать гидом
+  </Link>
+)}
                 <Button variant="ghost" size="sm" onClick={handleLogout} disabled={logout.isPending}>
                   Выйти
                 </Button>

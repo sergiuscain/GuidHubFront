@@ -20,6 +20,7 @@ export interface MeResponse {
   dateOfBirth: string | null
   bloodType: string | null
   isProfilePublic: boolean
+  roles: string[]
 }
 
 export interface ChildDto {
