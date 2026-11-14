@@ -20,6 +20,8 @@ export default function Layout() {
           <Link to="/" className="text-lg font-semibold">
             Guidhub
           </Link>
+          <Link to="/profile" className="text-sm underline-offset-4 hover:underline">Профиль</Link>
+<Link to="/profile/become-guide" className="text-sm underline-offset-4 hover:underline">Стать гидом</Link>
           <div className="flex items-center gap-3 text-sm">
             {me ? (
               <>
