@@ -4,20 +4,6 @@
 
 ## В плане
 
-### 0. Структура репозитория и документы
-
-  - tags: [infra, docs]
-  - priority: high
-  - defaultExpanded: false
-  - steps:
-      - [ ] Структура папок + .gitkeep
-      - [ ] docs/PROJECT.md
-      - [ ] docs/todo.md
-      - [ ] docs/ROUTES.md
-      - [ ] docs/API.md
-      - [ ] .gitignore, README.md
-      - [ ] Коммит
-
 ### 1. Инициализация Vite + React + TS
 
   - tags: [infra]
@@ -173,3 +159,18 @@
   - priority: low
 
 ## Выполнено
+
+### 0. Структура репозитория и документы
+
+  - tags: [infra, docs]
+  - priority: high
+  - defaultExpanded: false
+  - steps:
+      - [ ] Структура папок + .gitkeep
+      - [ ] docs/PROJECT.md
+      - [ ] docs/todo.md
+      - [ ] docs/ROUTES.md
+      - [ ] docs/API.md
+      - [ ] .gitignore, README.md
+      - [ ] Коммит
+
