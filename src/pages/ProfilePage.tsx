@@ -61,12 +61,14 @@ export default function ProfilePage() {
     })
   }
 
-  function handleDelete() {
-    if (!confirm("Удалить аккаунт? Это действие необратимо.")) return
-    deleteMe.mutate(undefined, {
-      onSuccess: () => navigate("/login"),
-    })
-  }
+function handleDelete() {
+  console.log("handleDelete called")
+  if (!confirm("Удалить аккаунт? Это действие необратимо.")) return
+  console.log("confirmed, mutating")
+  deleteMe.mutate(undefined, {
+    onSuccess: () => navigate("/login"),
+  })
+}
 
   return (
     <div className="max-w-2xl space-y-8">
@@ -103,10 +105,10 @@ export default function ProfilePage() {
       <ChildrenSection />
 
       <div className="border-t border-border pt-4">
-        <Button variant="destructive" onClick={handleDelete} disabled={deleteMe.isPending}>
-          Удалить аккаунт
-        </Button>
-      </div>
+      <Button variant="destructive" onClick={handleDelete} disabled={deleteMe.isPending}>
+        Удалить аккаунт
+      </Button>
+    </div>
     </div>
   )
 }

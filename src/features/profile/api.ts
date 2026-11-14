@@ -11,6 +11,7 @@ export function updateMe(data: UpdateMyProfileCommand): Promise<void> {
 }
 
 export function deleteMe(): Promise<void> {
+  console.log("deleteMe API called")
   return apiClient.delete<void>("/users/me")
 }
 
